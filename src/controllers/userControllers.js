@@ -57,10 +57,10 @@ const signIn = async (req, res) => {
 
     try {
         
-        const {username, password} = req.body
+        const {email, password} = req.body
 
         const isUserExist = await userModel.findOne({
-            email: username
+            email: email
         })
 
         if(!isUserExist){
