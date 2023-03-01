@@ -13,6 +13,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+    res.send("Note API is Live")
+})
+
 app.use("/user", userRouter);
 app.use("/note", noteRouter);
 
