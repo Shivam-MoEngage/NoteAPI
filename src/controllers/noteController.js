@@ -52,9 +52,9 @@ const updateNote = async (req, res) => {
 
     try {
         
-        await noteModel.findByIdAndUpdate(id, newNote, {new : true})
+        const note = await noteModel.findByIdAndUpdate(id, newNote, {new : true})
         res.status(200).json({
-            note: newNote,
+            note: note,
             status: 200
         })
 
@@ -78,6 +78,7 @@ const deleteNote = async (req, res) => {
 
         const result = await noteModel.findByIdAndRemove(id)
         res.status(200).json({
+            note: result,
             status : 200
         })
 
