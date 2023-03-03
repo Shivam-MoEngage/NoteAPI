@@ -1,3 +1,4 @@
+const note = require("../model/note");
 const noteModel = require("../model/note")
 
 const createNote = async (req, res) => {
@@ -19,10 +20,7 @@ const createNote = async (req, res) => {
 
         await newNote.save();
 
-        res.status(200).json({
-            note: newNote,
-        status: 200,
-    });
+        res.status(200).json(newNote);
 
 
     } catch (error) {
@@ -52,11 +50,8 @@ const updateNote = async (req, res) => {
 
     try {
         
-        const note = await noteModel.findByIdAndUpdate(id, newNote, {new : true})
-        res.status(200).json({
-            note: note,
-            status: 200
-        })
+        await noteModel.findByIdAndUpdate(id, newNote, {new : true})
+        res.status(200).json(newNote)
 
 
     } catch (error) {
@@ -77,10 +72,7 @@ const deleteNote = async (req, res) => {
     try{
 
         const result = await noteModel.findByIdAndRemove(id)
-        res.status(200).json({
-            note: result,
-            status : 200
-        })
+        res.status(200).json(result)
 
     }catch(error){
           console.log(error)
@@ -102,10 +94,7 @@ const getNote = async (req, res) => {
     
     const note = await noteModel.find({userId : userId});
 
-    res.status(200).json({
-        note,
-        status: 200,
-    })
+    res.status(200).json(note)
 
 
     } catch (error) {
